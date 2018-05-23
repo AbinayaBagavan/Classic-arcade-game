@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+    background: url("../images/sky.jpg");
+}
+
+h2 {
+	color: white;
+	text-align: center;
+}
+
+.hidden {
+	display: none;
+}
+
+.winner,h3,.lose {
+	text-align: center;
+	color: white;
+	font-family: "Georgia",Times,serif;
+	font-size: 2em;
+}
+
+.life {
+	text-align: center;
+	color: white;
+	font-family: "Georgia",Times,serif;
+	font-size: 1.5em;
+}
+img {
+	width: 230px;
+	height: 200px;
+}
