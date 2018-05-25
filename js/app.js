@@ -1,17 +1,11 @@
-// Enemies our player must avoid
-var Enemy = function(y) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+var Enemy = function(y) {               //Enemy class
     this.speed=this.calcSpeed();
-    this.direction=this.getDirection();
+    this.direction=this.getDirection();         // Variables applied to each of our instances go here,
     if(this.direction==="right")
     {
         this.sprite = 'images/enemy-bug.png';             //image of enemy bugs from left to right
         this.x=-50;
-    }    
+    }  
     else if(this.direction==="left")
     {
         this.sprite= 'images/enemy-bug-left.png';       //image of enemy bugs from right to left
@@ -142,32 +136,32 @@ Player.prototype.drawBox=function(x,y,width,height,color)       //draw box aroun
 };
 
 Player.prototype.update=function() {                //to keep player moving inside the canvas alone
-if(this.x<0)                                        //to avoid moving of player offscreen 
-{
-    this.x=0;
-}
-else if(this.x>405)
-{
-    this.x=405;
-}
-else if(this.y<0)
-{
-    this.y=0;
-}
-else if(this.y>425)
-{
-    this.y=425;
-}
-else if(this.y===0)                         //checking whether the player reached the Water area
-{
-    //alert("You won");
-    this.winner();
+    if(this.x<0)                                        //to avoid moving of player offscreen 
+    {
+        this.x=0;
+    }
+    else if(this.x>405)
+    {
+        this.x=405;
+    }
+    else if(this.y<0)
+    {
+        this.y=0;
+    }
+    else if(this.y>425)
+    {
+        this.y=425;
+    }
+    else if(this.y===0)                         //checking whether the player reached the Water area
+    {
+        //alert("You won");
+        this.winner();
+        return;
+    }
+    this.makeBox();                     
+    this.collisionCheck();
+    //this.winner();
     return;
-}
-this.makeBox();                     
-this.collisionCheck();
-//this.winner();
-return;
 };
 
 Player.prototype.makeBox=function()         //update box info at changing player positions
@@ -225,7 +219,7 @@ Player.prototype.collisionCheck=function()          //collision detection functi
         playerBox=this.box;
         //console.log("Collision"+playerBox.width);
         enemyBox=allEnemies[i].box;
-        if(playerBox.boxX<enemyBox.x+enemyBox.width &&                      //chcking the collision of player and enemy boxes
+        if(playerBox.boxX<enemyBox.x+enemyBox.width &&                      //checking the collision of player and enemy boxes
             playerBox.boxX+playerBox.width>enemyBox.x && 
             playerBox.boxY<enemyBox.y+enemyBox.height && 
             playerBox.height+playerBox.boxY>enemyBox.y)
@@ -234,7 +228,7 @@ Player.prototype.collisionCheck=function()          //collision detection functi
             this.life-=1;                                                   //reduce life if collision occurs
             var attempt=document.querySelector('life');
             attempt.innerText=this.life;
-            console.log(this.life);
+           // console.log(this.life);
             if(this.life>0)                                                 //if life exists
             {
                     setTimeout(this.reset(),1000);                          //reset player to initial position
@@ -278,12 +272,9 @@ Player.prototype.lose=function()                    //gameover declaration if pl
     //alert(canvas.outerHTML);
     canvas.outerHTML=" ";
     this.y=425;
-    los.classList.toggle('hidden');
+    loss.classList.toggle('hidden');
     return;  
 }
-//var enemyObject=new Enemy(300,300);
-//allEnemies.push(enemyObject);
-//alert("Element x"+allEnemies[0].x);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
